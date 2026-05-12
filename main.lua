@@ -9,7 +9,7 @@ local placeIds = {
     [2753915549] = true, -- First Sea
     [4442272183] = true, -- Second Sea
     [7447423569] = true, -- Third Sea
-    [10017331123969] = true, -- Pirate Sea / New Sea Instance
+    [100117331123089] = true, -- Pirate Sea / New Sea Instance
 }
 
 if not placeIds[game.PlaceId] then

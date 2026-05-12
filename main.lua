@@ -19,7 +19,26 @@ end
 
 -- Load modules from GitHub
 local repo = "https://raw.githubusercontent.com/AtaberkCelil/KLOSO-FRUIT/main/"
-local function fetch(name) return loadstring(game:HttpGet(repo .. name))() end
+local function fetch(name)
+    local success, content = pcall(game.HttpGet, game, repo .. name)
+    if not success or not content or content == "404: Not Found" then
+        warn("Kloso Hub: Failed to download " .. name .. " (Error: " .. tostring(content) .. ")")
+        return function() end
+    end
+    
+    local func, err = loadstring(content)
+    if not func then
+        warn("Kloso Hub: Syntax error in " .. name .. ": " .. tostring(err))
+        return function() end
+    end
+    
+    local ok, res = pcall(func)
+    if not ok then
+        warn("Kloso Hub: Execution error in " .. name .. ": " .. tostring(res))
+        return function() end
+    end
+    return res
+end
 
 local Module = fetch("Module.lua")
 local Library = fetch("Library.lua")

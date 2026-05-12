@@ -10,13 +10,16 @@ if game.PlaceId ~= 2753915549 then
     return
 end
 
--- Load modules from local workspace
-local Module = loadstring(readfile("Module.lua"))()
-local Library = loadstring(readfile("Library.lua"))()
-local Quests = loadstring(readfile("Quests.lua"))()
-local GunModule = loadstring(readfile("GunModule.lua"))()
-local GuideModule = loadstring(readfile("GuideModule.lua"))()
-local GameModule = loadstring(readfile("GameModule.lua"))()
+-- Load modules from GitHub
+local repo = "https://raw.githubusercontent.com/AtaberkCelil/KLOSO-FRUIT/main/"
+local function fetch(name) return loadstring(game:HttpGet(repo .. name))() end
+
+local Module = fetch("Module.lua")
+local Library = fetch("Library.lua")
+local Quests = fetch("Quests.lua")
+local GunModule = fetch("GunModule.lua")
+local GuideModule = fetch("GuideModule.lua")
+local GameModule = fetch("GameModule.lua")
 
 -- ═══════════════════════════════════
 -- INITIALIZE UI

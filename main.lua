@@ -5,8 +5,14 @@
 ]]
 
 -- Verify game
-if game.PlaceId ~= 2753915549 then
-    warn("Kloso Hub: Not in Blox Fruits!")
+local placeIds = {
+    [2753915549] = true, -- First Sea
+    [4442272183] = true, -- Second Sea
+    [7447423569] = true, -- Third Sea
+}
+
+if not placeIds[game.PlaceId] then
+    warn("Kloso Hub: Not in Blox Fruits! (PlaceId: " .. tostring(game.PlaceId) .. ")")
     return
 end
 
